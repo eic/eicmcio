@@ -1,0 +1,15 @@
+get_filename_component(EICMCIO_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+include(CMakeFindDependencyMacro)
+
+list(APPEND CMAKE_MODULE_PATH ${EICMCIO_CMAKE_DIR})
+
+## NOTE: replace it later for root
+#find_dependency(RapidJSON @MIN_RapidJSON_VERSION@)
+#list(REMOVE_AT CMAKE_MODULE_PATH -1)
+#find_dependency(boost_regex @MIN_BOOST_VERSION@)
+
+# if(NOT TARGET eicmcio)
+#    include("${EICMCIO_CMAKE_DIR}/eicmcioConfig.cmake")
+# endif()
+
+set(EICMCIO_lIBRARIES eicmcio)

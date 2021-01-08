@@ -17,7 +17,7 @@ pip install sphinx sphinx_rtd_theme recommonmark
 ## Building
 
 ```bash
-pip install sphinx-autobuild
+pip install --upgrade sphinx-autobuild sphinx_rtd_theme recommonmark
 
 # from project root
 sphinx-autobuild docs docs/_build/html
