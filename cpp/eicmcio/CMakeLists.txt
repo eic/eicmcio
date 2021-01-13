@@ -10,8 +10,8 @@ list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 add_library(eicmcio
         readers/beagle_reader/BeagleEventData.h
         readers/beagle_reader/BeagleParticle.h
-        readers/beagle_reader/JEventSource_beagle.cc
-        readers/beagle_reader/JEventSource_beagle.h
+        readers/beagle_reader/BeagleReader.cc
+        readers/beagle_reader/BeagleReader.h
 )
 
 # Fill this with more required features

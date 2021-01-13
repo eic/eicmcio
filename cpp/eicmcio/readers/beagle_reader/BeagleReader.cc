@@ -1,36 +1,19 @@
 #include <iostream>
 #include <string>
 
-#include <fmt/format.h>     // For format and print functions
-
-#include <JANA/JEventSourceGeneratorT.h>
-#include <JANA/JSourceFactoryGenerator.h>
-
 #include <MinimalistModel/McGeneratedParticle.h>
+#include <memory>
 
 #include "BeagleEventData.h"
 #include "BeagleParticle.h"
-#include "JEventSource_beagle.h"
+#include "BeagleReader.h"
 
-#include <ejana/TextEventFileReader.h>
-#include <ejana/EStringHelpers.h>
-#include <ejana/EventSourceControl.h>
-#include <MinimalistModel/TrueDisInfo.h>
-
-using namespace ej;
-using namespace minimodel;
 
 //----------------
 // Constructor
 //----------------
-JEventSource_beagle::JEventSource_beagle(const std::string& source_name, JApplication *app):
-    JEventSource(source_name, app),
-    services(app)
+BeagleReader::BeagleReader(const std::string& source_name):
 {
-    using namespace fmt;
-
-    // Open file
-    print("JEventSource_beagle: Opening TXT file {} !\n", source_name);
 
     text_reader = std::unique_ptr<ej::TextEventFileReader>(new TextEventFileReader(
             source_name,
@@ -46,7 +29,7 @@ JEventSource_beagle::JEventSource_beagle(const std::string& source_name, JApplic
                     return TextEventLineDecisions::Skip;
                 }
 
-                // Looks like it is a dataline so we need it to be tokenized
+                // Looks like it is a data line so we need it to be tokenized
                 return TextEventLineDecisions::Tokenize;
             },
 
@@ -71,7 +54,7 @@ JEventSource_beagle::JEventSource_beagle(const std::string& source_name, JApplic
 //----------------
 // GetEvent
 //----------------
-void JEventSource_beagle::GetEvent(std::shared_ptr<JEvent> event)
+void BeagleReader::GetEvent(std::shared_ptr<JEvent> event)
 {
     // Read an event from the source and copy the vital info into the Geant4EicEventData structure.
 
@@ -105,7 +88,7 @@ void JEventSource_beagle::GetEvent(std::shared_ptr<JEvent> event)
     }
 }
 
-bool JEventSource_beagle::ReadNextEvent(){
+bool BeagleReader::ReadNextEvent(){
     uint line_count = 0;
     // Read file lines until full event is read
     while(!text_reader->IsNewEventReady())

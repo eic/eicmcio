@@ -10,30 +10,16 @@
 
 #include <fstream>
 
-#include <JANA/JEventSource.h>
-#include <JANA/JEvent.h>
-
-#include <MinimalistModel/McFluxHit.h>
-#include <ejana/EServicePool.h>
-#include <ejana/TextEventFileReader.h>
-
 #include "BeagleEventData.h"
 #include "BeagleParticle.h"
-#include <ejana/EventSourceControl.h>
 
 
-
-class JEventSource_beagle: public JEventSource {
+class BeagleReader {
 public:
 
-	explicit JEventSource_beagle(const std::string& source_name, JApplication *app = nullptr);
-	~JEventSource_beagle() override  = default;
+	explicit BeagleReader();
+	~BeagleReader();
 
-    /** Get description of this event source */
-	std::string GetVDescription() const override {return GetDescription(); }
-
-    // A description of this source type must be provided as a static member
-    static std::string GetDescription() { return "BeAGLE generated Text file"; }
 
 	/** Reads next event and returns it as JEvent from */
     void GetEvent(std::shared_ptr<JEvent>) override;
