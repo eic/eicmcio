@@ -4,3 +4,4 @@ venv/
 docs/_build/
 
 cpp/cmake-build-debug/
+build/
