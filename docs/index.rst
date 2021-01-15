@@ -8,5 +8,6 @@ EIC-MC-IO library
    :caption: File formats:
 
    format_pythia6_bnl
+   beagle_file_format
 
 
