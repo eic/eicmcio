@@ -17,7 +17,7 @@
 #include <TDatabasePDG.h>
 
 
-using namespace ej;
+using namespace eicmcio;
 using namespace minimodel;
 
 //----------------
@@ -33,10 +33,10 @@ JEventSource_lund::JEventSource_lund(const std::string& source_name, JApplicatio
     // Open file
     print("JEventSource_lund: Opening TXT file {}\n", source_name);
 
-    text_reader = std::unique_ptr<ej::TextEventFileReader>(new TextEventFileReader(
+    text_reader = std::unique_ptr<eicmcio::TextEventFileReader>(new TextEventFileReader(
             source_name,
             [this](uint64_t line_num, const std::string& line){
-                if(line_num == 0 && ej::TrimCopy(line) == "PYTHIA EVENT FILE") {
+                if(line_num == 0 && eicmcio::TrimCopy(line) == "PYTHIA EVENT FILE") {
                     this->m_is_eic_pythia = true;
                 }
 
@@ -52,7 +52,7 @@ JEventSource_lund::JEventSource_lund(const std::string& source_name, JApplicatio
                     }
                 } else {
                     // skip comments #
-                    if(ej::StartsWith(ej::TrimCopy(line), "#"))  {
+                    if(eicmcio::StartsWith(eicmcio::TrimCopy(line), "#"))  {
                         return TextEventLineDecisions::Skip;
                     }
                 }
@@ -153,8 +153,8 @@ bool JEventSource_lund::ReadNextEvent(){
 // We use "partial template specialization" to define this here in place of the default
 // one defined in the templated JFactoryT class.
 template<>
-void JFactoryT<ej::LundParticle>::Process(const std::shared_ptr<const JEvent>& event) {
-    auto text_event_record = event->GetSingle<ej::LundEventData>();
+void JFactoryT<eicmcio::LundParticle>::Process(const std::shared_ptr<const JEvent>& event) {
+    auto text_event_record = event->GetSingle<eicmcio::LundEventData>();
 
     // text_event_record has just tokenized text from
 
@@ -204,7 +204,7 @@ void JFactoryT<minimodel::McGeneratedParticle>::Process(const std::shared_ptr<co
         m_pdg_db = TDatabasePDG::Instance();
     }
 
-    auto lund_particles = event->Get<ej::LundParticle>();
+    auto lund_particles = event->Get<eicmcio::LundParticle>();
 
     std::vector<McGeneratedParticle *> particles;
     for(auto b_part: lund_particles) {

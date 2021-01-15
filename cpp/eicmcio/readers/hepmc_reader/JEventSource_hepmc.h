@@ -33,12 +33,12 @@ public:
 	bool GetObjects(const std::shared_ptr<const JEvent>&, JFactory* ) override {return false;}
 
 	protected:
-		ej::EServicePool services;                 /// Service locator
+		eicmcio::EServicePool services;                 /// Service locator
         std::unique_ptr<HepMC3::Reader> hepmc_input;
 
 	private:
         uint64_t read_entries_count = 0;           /// int64 but not uint64 because of the root GetEntries
-        ej::EventSourceControl* eventSourceControl;
+        eicmcio::EventSourceControl* eventSourceControl;
 
 };
 

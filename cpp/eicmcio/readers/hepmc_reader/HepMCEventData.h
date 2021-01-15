@@ -15,7 +15,7 @@ class JApplication;
 
 
 
-namespace ej
+namespace eicmcio
 {
     class HepMCEventData: public JObject
     {

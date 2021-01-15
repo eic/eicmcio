@@ -41,13 +41,13 @@ public:
 
 protected:
     int64_t entry_index;			        // int64 but not uint64 because of the root GetEntries
-    ej::EServicePool services;              // Service locator
+    eicmcio::EServicePool services;              // Service locator
 
 private:
     bool m_is_eic_pythia = false;
     std::ifstream input_file;
-    std::unique_ptr<ej::TextEventFileReader> text_reader;    // Parser for pythia/beagle whatever files
-    ej::EventSourceControl* eventSourceControl;
+    std::unique_ptr<eicmcio::TextEventFileReader> text_reader;    // Parser for pythia/beagle whatever files
+    eicmcio::EventSourceControl* eventSourceControl;
     bool ReadNextEvent(); //Reads lines until an event is ready. Returns false if there are no more events
 
 };

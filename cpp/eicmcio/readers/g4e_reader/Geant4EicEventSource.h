@@ -40,8 +40,8 @@ public:
         TTree *event_tree;
         JLEICGeantSelector_1_0* event_selector;
 		int64_t entry_index;			 // int64 but not uint64 because of the root GetEntries
-		ej::EServicePool services;
-		ej::EventSourceControl* eventSourceControl;
+		eicmcio::EServicePool services;
+		eicmcio::EventSourceControl* eventSourceControl;
 };
 
 #endif // _JEventSourceGenerator_jleic_root_

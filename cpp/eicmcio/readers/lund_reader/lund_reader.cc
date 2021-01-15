@@ -14,8 +14,8 @@ extern "C"{
         InitJANAPlugin(app);
 
         app->Add(new JEventSourceGeneratorT<JEventSource_lund>(app));
-        app->Add(new JFactoryGeneratorT<JFactoryT<ej::LundEventData>>());
-        app->Add(new JFactoryGeneratorT<JFactoryT<ej::LundParticle>>());
+        app->Add(new JFactoryGeneratorT<JFactoryT<eicmcio::LundEventData>>());
+        app->Add(new JFactoryGeneratorT<JFactoryT<eicmcio::LundParticle>>());
         app->Add(new JFactoryGeneratorT<JFactoryT<minimodel::McGeneratedParticle>>());
     }
 }

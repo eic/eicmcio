@@ -122,7 +122,7 @@ Which has `LundEventData::column_values`. The most important members are:
         std::vector<LundParticle *> particles; // Primary particles (that comes from a generator)
 
         /// Not parsed event (in forms of tokens)
-        std::unique_ptr<ej::TextFileEvent> text_event;
+        std::unique_ptr<eicmcio::TextFileEvent> text_event;
 
         /// Parse() function was called
         bool is_parsed = false;
@@ -137,7 +137,7 @@ Thus, the length
 So it might be used as (the example is for [EIC_mesonMC]):
 
 ```c++
-auto event_data = event->GetSingle<ej::LundEventData>();
+auto event_data = event->GetSingle<eicmcio::LundEventData>();
 tgt_mass   = eventData->column_values[1];   // Column #2  Mass number of the target
 evt_weight = eventData->column_values[9];   // Column #10 Event weight
 ```
@@ -154,11 +154,11 @@ may need the data, here is a code sample which checks and uses LundEventData dir
 
 ```c++
 
-bool is_lund_evnet = event->GetFactory<ej::LundEventData>("", false) != nullptr;
+bool is_lund_evnet = event->GetFactory<eicmcio::LundEventData>("", false) != nullptr;
 
 if(is_lund_evnet) {
     have_true_dis_info = true;
-    auto eventData = event->GetSingle<ej::LundEventData>();
+    auto eventData = event->GetSingle<eicmcio::LundEventData>();
     true_x = eventData->column_values[0];
     true_q2 = eventData->column_values[1];
     // ...

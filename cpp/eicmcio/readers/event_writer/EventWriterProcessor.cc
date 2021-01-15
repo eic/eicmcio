@@ -179,9 +179,9 @@ void EventWriterProcessor::Process(const std::shared_ptr<const JEvent>& event)
     double true_that;
     bool has_true_dis;
 
-    if(event->GetFactory<ej::BeagleEventData>())
+    if(event->GetFactory<eicmcio::BeagleEventData>())
     {
-        auto beagle_event = event->GetSingle<ej::BeagleEventData>();
+        auto beagle_event = event->GetSingle<eicmcio::BeagleEventData>();
         true_q2      = beagle_event->trueQ2;
         true_x       = beagle_event->truex;
         true_y       = beagle_event->truey;
@@ -200,8 +200,8 @@ void EventWriterProcessor::Process(const std::shared_ptr<const JEvent>& event)
     }
 
     // TODO this is a dirty hack to have weight "quick", it needs to be done in formal way
-    if(event->GetFactory<ej::LundEventData>("", false)) {
-        auto lundData = event->GetSingle<ej::LundEventData>();
+    if(event->GetFactory<eicmcio::LundEventData>("", false)) {
+        auto lundData = event->GetSingle<eicmcio::LundEventData>();
         gEwRecord.weight = lundData->var9;
     } else {
         gEwRecord.weight = 0;

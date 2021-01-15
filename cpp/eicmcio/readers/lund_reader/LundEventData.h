@@ -17,7 +17,7 @@
 
 class JApplication;
 
-namespace ej {
+namespace eicmcio {
     class LundEventData : public JObject {
     public:
         // FIELDS
@@ -29,7 +29,7 @@ namespace ej {
         std::vector<LundParticle *> particles; // Primary particles (that comes from a generator)
 
         /// Not parsed event (in forms of tokens)
-        std::unique_ptr<ej::TextFileEvent> text_event;
+        std::unique_ptr<eicmcio::TextFileEvent> text_event;
 
         /// Parse() function was called
         bool is_parsed = false;

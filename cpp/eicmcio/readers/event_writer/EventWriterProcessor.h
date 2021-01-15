@@ -53,7 +53,7 @@ public:
 private:
     static std::atomic<size_t> m_event_counter;
     EventWriterRootOutput root_out;
-    ej::EServicePool services;
+    eicmcio::EServicePool services;
     int verbose;                // verbose output level
 };
 

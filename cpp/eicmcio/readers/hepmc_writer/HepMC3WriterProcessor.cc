@@ -68,9 +68,9 @@ void HepMC3WriterProcessor::Process(const std::shared_ptr<const JEvent>& event)
     double true_w2;
     double true_nu;
     bool has_true_dis;
-    if(event->GetFactory<ej::BeagleEventData>())
+    if(event->GetFactory<eicmcio::BeagleEventData>())
     {
-        auto beagle_event = event->GetSingle<ej::BeagleEventData>();
+        auto beagle_event = event->GetSingle<eicmcio::BeagleEventData>();
         true_q2      = beagle_event->trueQ2;
         true_x       = beagle_event->truex;
         true_y       = beagle_event->truey;

@@ -14,7 +14,7 @@
 struct JFactoryGenerator_hepmc_reader:public JFactoryGenerator {
     void GenerateFactories(JFactorySet *factory_set) override {
 
-//factory_set->Add( new JFactoryT<ej::BeagleParticle>());
+//factory_set->Add( new JFactoryT<eicmcio::BeagleParticle>());
         factory_set->Add( new JFactoryT<minimodel::McGeneratedParticle>());
         factory_set->Add( new JFactoryT<minimodel::McGeneratedVertex>());
     }

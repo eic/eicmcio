@@ -47,7 +47,7 @@ public:
 
 private:
     EventlessRootOutput root_out;
-    ej::EServicePool services;
+    eicmcio::EServicePool services;
     int verbose;                // verbose output level
 };
 

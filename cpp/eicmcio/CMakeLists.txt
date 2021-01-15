@@ -4,14 +4,18 @@ project(libeicmcio VERSION 0.0.1 LANGUAGES CXX)
 #Make sure that custom modules are found
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 
+
 ##############################################
 # Create target and set properties
 
 add_library(eicmcio
-        readers/beagle_reader/BeagleEventData.h
-        readers/beagle_reader/BeagleParticle.h
-        readers/beagle_reader/BeagleReader.cc
-        readers/beagle_reader/BeagleReader.h
+        BeagleEventData.h
+        BeagleParticle.h
+        BeagleReader.cc
+        BeagleReader.h
+        EventRangeController.h
+        StringHelpers.h
+        TextEventFileReader.h
 )
 
 # Fill this with more required features

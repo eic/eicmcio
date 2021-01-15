@@ -27,7 +27,7 @@
 #include <HepMC3/GenParticle.h>
 #include <HepMC3/FourVector.h>
 
-using namespace ej;
+using namespace eicmcio;
 using namespace minimodel;
 
 //----------------
@@ -118,7 +118,7 @@ void JEventSource_hepmc::GetEvent(std::shared_ptr<JEvent> event)
 template<>
 void JFactoryT<minimodel::McGeneratedVertex>::Process(const std::shared_ptr<const JEvent>& jana_event) {
 
-    auto event_data = const_cast<ej::HepMCEventData*>(jana_event->GetSingle<ej::HepMCEventData>());
+    auto event_data = const_cast<eicmcio::HepMCEventData*>(jana_event->GetSingle<eicmcio::HepMCEventData>());
     auto hepmc_event = event_data->hepmc_event;
     std::vector<minimodel::McGeneratedVertex*> mm_vertexes;
 
@@ -162,7 +162,7 @@ void JFactoryT<minimodel::McGeneratedParticle>::Process(const std::shared_ptr<co
 {
     static std::recursive_mutex pdg_db_lock;
 
-    auto hepmc_event = jana_event->GetSingle<ej::HepMCEventData>()->hepmc_event;
+    auto hepmc_event = jana_event->GetSingle<eicmcio::HepMCEventData>()->hepmc_event;
 
     std::vector<minimodel::McGeneratedParticle*> result_particles;
 

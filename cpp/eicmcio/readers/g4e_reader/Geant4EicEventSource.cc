@@ -77,7 +77,7 @@ Geant4EicEventSource::Geant4EicEventSource(std::string& source_name, JApplicatio
 	// Event index = number of event read
 	entry_index = 0;
 
-	eventSourceControl = new ej::EventSourceControl(app->GetJParameterManager());
+	eventSourceControl = new eicmcio::EventSourceControl(app->GetJParameterManager());
 }
 
 //----------------
@@ -105,7 +105,7 @@ void Geant4EicEventSource::GetEvent(std::shared_ptr<JEvent> event)
 	TTreeReader::EEntryStatus result = TTreeReader::EEntryStatus::kEntryNotLoaded;
 
 	auto decision = eventSourceControl->Decide(entry_index);
-	while (decision == ej::EventControlDecisions::Skip) {
+	while (decision == eicmcio::EventControlDecisions::Skip) {
 
 		result = event_selector->fReader.SetEntry(entry_index);
 
@@ -116,7 +116,7 @@ void Geant4EicEventSource::GetEvent(std::shared_ptr<JEvent> event)
 		decision = eventSourceControl->Decide(entry_index);
 	}
 
-	if (decision == ej::EventControlDecisions::Stop){
+	if (decision == eicmcio::EventControlDecisions::Stop){
 		throw JEventSource::RETURN_STATUS::kNO_MORE_EVENTS;
 	}
 	else {

@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <JANA/JObject.h>
 
-namespace ej {
+namespace eicmcio {
     class LundParticle: public JObject  {
     public:
         int index;             // I  index
