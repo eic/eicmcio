@@ -58,11 +58,11 @@ eicmcio::BeagleReader::BeagleReader(const std::string& source_name)
 //----------------
 // GetEvent
 //----------------
-bool BeagleReader::GetEvent(BeagleEventData& event)
+bool BeagleReader::GetEvent(BeagleEventData& event_data)
 {
     // Read an event from the source and copy the vital info into the Geant4EicEventData structure.
 
-    BeagleEventData* event_data;
+
 
     // Skip as many events as necessary
     auto decision = eventSourceControl.Decide(entry_index);
@@ -80,10 +80,10 @@ bool BeagleReader::GetEvent(BeagleEventData& event)
     // Parsing this event
     if (!this->ReadNextEvent()) return false;
 
-    event_data = new BeagleEventData();
-    event_data->text_event = text_reader->GetEvent();
-    event_data->Parse();
-    event_data->event_index = entry_index;
+
+    event_data.text_event = text_reader->GetEvent();
+    event_data.Parse();
+    event_data.event_index = entry_index;
     entry_index++;
 
     // Successful read of events

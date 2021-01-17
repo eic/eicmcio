@@ -19,9 +19,7 @@ class  TextEventFileReader;
 
 class BeagleReader {
 public:
-
 	explicit BeagleReader(const std::string& source_name);
-	~BeagleReader();
 
 
 	/** Reads next event and returns it as JEvent from */
@@ -29,7 +27,7 @@ public:
 
 
 	private:
-
+        BeagleReader() = delete;
         int64_t entry_index;			        // int64 but not uint64 because of the root GetEntries
         std::unique_ptr<eicmcio::TextEventFileReader> text_reader;    // Parser for pythia/beagle whatever files
         eicmcio::EventRangeController eventSourceControl;

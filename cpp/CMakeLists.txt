@@ -9,9 +9,14 @@ if(NOT DEFINED CMAKE_CXX_STANDARD)
 endif()
 message(STATUS "eicmcio: CMAKE_CXX_STANDARD: ${CMAKE_CXX_STANDARD}")
 
+# Use additional cmake files
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+
+
 
 include_directories(SYSTEM spdlog ./)
 
 add_subdirectory(eicmcio)
 add_subdirectory(tests)
+
 
