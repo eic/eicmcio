@@ -1,0 +1,6 @@
+build
+install
+*pyc
+*~
+tests/src
+tests/datamodel

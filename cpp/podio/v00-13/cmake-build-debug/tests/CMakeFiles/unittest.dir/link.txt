@@ -1,0 +1,1 @@
+/usr/bin/c++  -Weffc++ -pedantic -Wextra -Wall -fdiagnostics-color=auto -Wdeprecated -Wno-long-long -Wformat-security -Wshadow           -g   CMakeFiles/unittest.dir/unittest.cpp.o  -o unittest  -Wl,-rpath,/home/romanov/eic/soft/podio/src/v00-13/cmake-build-debug/tests:/home/romanov/eic/soft/podio/src/v00-13/cmake-build-debug/src libTestDataModel.so ../src/libpodio.so 

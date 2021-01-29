@@ -1,0 +1,20 @@
+<lcgdict>
+  <selection>
+    <class name="podio::GenericParameters"/>
+    <class name="podio::IntVec"/>
+    <class name="podio::FloatVec"/>
+    <class name="podio::StringVec"/>
+    <class name="podio::GenericParameters::MapType<int>"/>
+    <class name="podio::GenericParameters::MapType<float>"/>
+    <class name="podio::GenericParameters::MapType<std::string>"/>
+    <class name="std::map<int,podio::GenericParameters>"/>
+    <class name="podio::CollectionBase"/>
+    <class name="podio::CollectionIDTable">
+        <field name="m_mutex" transient="true"/>
+    </class>
+    <class name="podio::PythonEventStore">
+    </class>
+    <class name="podio::ObjectID"/>
+    <class name="vector<podio::ObjectID>"/>
+    </selection>
+</lcgdict>

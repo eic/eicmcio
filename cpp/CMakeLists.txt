@@ -16,6 +16,7 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 include_directories(SYSTEM spdlog ./)
 
+add_subdirectory(podio/v00-13)
 add_subdirectory(eicmcio)
 add_subdirectory(tests)
 
