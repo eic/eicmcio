@@ -7,10 +7,6 @@
 #include <limits.h>
 
 
-unsigned int Factorial( unsigned int number ) {
-    return number <= 1 ? number : Factorial(number-1)*number;
-}
-
 TEST_CASE( "BeagleReader read a single file", "[reader]" ) {
     char cwd[PATH_MAX];
     if (getcwd(cwd, sizeof(cwd)) != NULL) {

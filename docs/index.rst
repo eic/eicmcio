@@ -10,4 +10,10 @@ EIC-MC-IO library
    format_pythia6_bnl
    beagle_file_format
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Development:
+
+   cpp_development
+   python_development
 
