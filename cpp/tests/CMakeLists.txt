@@ -6,7 +6,7 @@ add_executable(cpp_tests_exec
         catch2/catch.hpp
         test_beagle_reader.cpp)
 
-find_package(eicmcio 0.0.1 REQUIRED)
+# find_package(eicmcio 0.0.1 REQUIRED)
 target_link_libraries(cpp_tests_exec eicmcio)
 
 # we need files

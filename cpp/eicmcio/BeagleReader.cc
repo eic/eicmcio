@@ -83,6 +83,33 @@ bool BeagleReader::GetEvent(BeagleEventData& event_data)
 
     event_data.text_event = text_reader->GetEvent();
     event_data.Parse();
+
+
+    // Fill Original particles information    
+    for(auto particle_tokens : event_data.text_event->particle_values)
+    {
+        auto particle = new BeagleParticle();
+        particle->index          = std::stoi(particle_tokens[0]);   // I line index, runs from 1 to nrTracks
+        particle->ks_code        = std::stoi(particle_tokens[1]);   // I status code KS: KS=1 is the only stable final state particle code, Use NoBAM variable (below) to specify origin of particle
+        particle->kf_code        = std::stoi(particle_tokens[2]);   // I particle KF code (211: pion, 2112:n, ....). Code 80000 refers to a nucleus, specified in more detail by A=IDRES(I), Z=IDXRES(I)
+        particle->mother_second  = std::stoi(particle_tokens[3]);   // I line number of second mother particle
+        particle->mother_first   = std::stoi(particle_tokens[4]);   // I line number of first mother particle
+        particle->daughter_first = std::stoi(particle_tokens[5]);   // I normally the line number of the first daughter.
+        particle->daughter_last  = std::stoi(particle_tokens[6]);   // I normally the line number of the last daughter.
+        particle->px             = std::stod(particle_tokens[7]);   // D px of particle (GeV/c)
+        particle->py             = std::stod(particle_tokens[8]);   // D py of particle (GeV/c)
+        particle->pz             = std::stod(particle_tokens[9]);   // D pz of particle (GeV/c)
+        particle->e              = std::stod(particle_tokens[10]);  // D Energy of particle (GeV)
+        particle->m              = std::stod(particle_tokens[11]);  // D mass of particle (GeV/c^2)
+        particle->vx             = std::stod(particle_tokens[12]);  // D x vertex information (mm)
+        particle->vy             = std::stod(particle_tokens[13]);  // D y vertex information (mm)
+        particle->vz             = std::stod(particle_tokens[14]);  // D z vertex information (mm)
+        particle->baryon_number  = std::stoi(particle_tokens[15]);  // I Baryon number, or A for a nucleus (IDHKK(I)=80000), fractional B set to 0.
+        particle->charge         = std::stoi(particle_tokens[16]);  // I Particle charge, (Z for a nucleus), 0 for fractional charge.
+        particle->origin         = std::stoi(particle_tokens[17]);  // I Flag describing the particle origin, particularly for final state particles.
+        event_data.particles.push_back(particle);
+    }
+
     event_data.event_index = entry_index;
     entry_index++;
 
@@ -127,33 +154,7 @@ void JFactoryT<eicmcio::BeagleParticle>::Process(const std::shared_ptr<const JEv
 
     // text_event_record has just tokenized text from
 
-    // Fill Original particles information
-    std::vector<BeagleParticle *> particles;
-    for(auto particle_tokens :text_event_record->text_event->particle_values)
-    {
-        auto particle = new BeagleParticle();
-        particle->index          = std::stoi(particle_tokens[0]);   // I line index, runs from 1 to nrTracks
-        particle->ks_code        = std::stoi(particle_tokens[1]);   // I status code KS: KS=1 is the only stable final state particle code, Use NoBAM variable (below) to specify origin of particle
-        particle->kf_code        = std::stoi(particle_tokens[2]);   // I particle KF code (211: pion, 2112:n, ....). Code 80000 refers to a nucleus, specified in more detail by A=IDRES(I), Z=IDXRES(I)
-        particle->mother_second  = std::stoi(particle_tokens[3]);   // I line number of second mother particle
-        particle->mother_first   = std::stoi(particle_tokens[4]);   // I line number of first mother particle
-        particle->daughter_first = std::stoi(particle_tokens[5]);   // I normally the line number of the first daughter.
-        particle->daughter_last  = std::stoi(particle_tokens[6]);   // I normally the line number of the last daughter.
-        particle->px             = std::stod(particle_tokens[7]);   // D px of particle (GeV/c)
-        particle->py             = std::stod(particle_tokens[8]);   // D py of particle (GeV/c)
-        particle->pz             = std::stod(particle_tokens[9]);   // D pz of particle (GeV/c)
-        particle->e              = std::stod(particle_tokens[10]);  // D Energy of particle (GeV)
-        particle->m              = std::stod(particle_tokens[11]);  // D mass of particle (GeV/c^2)
-        particle->vx             = std::stod(particle_tokens[12]);  // D x vertex information (mm)
-        particle->vy             = std::stod(particle_tokens[13]);  // D y vertex information (mm)
-        particle->vz             = std::stod(particle_tokens[14]);  // D z vertex information (mm)
-        particle->baryon_number  = std::stoi(particle_tokens[15]);  // I Baryon number, or A for a nucleus (IDHKK(I)=80000), fractional B set to 0.
-        particle->charge         = std::stoi(particle_tokens[16]);  // I Particle charge, (Z for a nucleus), 0 for fractional charge.
-        particle->origin         = std::stoi(particle_tokens[17]);  // I Flag describing the particle origin, particularly for final state particles.
-        particles.push_back(particle);
-    }
-
-    Set(std::move(particles));
+    
 }
 
 

@@ -16,8 +16,9 @@ TEST_CASE( "BeagleReader read a single file", "[reader]" ) {
     }
 
     eicmcio::BeagleReader reader("beagle_3events.txt");
-    //eicmcio::BeagleEventData data;
-    //bool result = reader.GetEvent(data);
-    //REQUIRE(result);
-    //REQUIRE(data.event_index == 0);
+    eicmcio::BeagleEventData data;
+    bool result = reader.GetEvent(data);
+    REQUIRE (data.genevent == 1);
+    REQUIRE(data.particles.size() == 11);
+    REQUIRE(data.particles[0]->kf_code == 11);
 }
