@@ -21,4 +21,5 @@ TEST_CASE( "BeagleReader read a single file", "[reader]" ) {
     REQUIRE (data.genevent == 1);
     REQUIRE(data.particles.size() == 11);
     REQUIRE(data.particles[0]->kf_code == 11);
+    //gg
 }
