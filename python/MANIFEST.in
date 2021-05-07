@@ -1,0 +1,6 @@
+exclude .gitignore
+exclude run_eicmcio.py
+exclude containers
+
+include pip_readme.md
+recursive-include eicmcio/ *.py
