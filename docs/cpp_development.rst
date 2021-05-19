@@ -20,3 +20,14 @@ Install plugins:
 
 
 Point to CMakeLists.txt in cpp directory
+
+
+PODio
+-----
+
+To regenerate all PODio classes: 
+
+ .. code:: bash
+
+    # From the project root
+    python cpp/podio/v00-13/python/podio_class_generator.py ../examples/datalayout.yaml cpp/eicmcio/podio data ROOT
